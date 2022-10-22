@@ -1,0 +1,13 @@
+numpy
+matplotlib
+scipy
+sndfile
+librosa
+tensorflow
+keras
+scikit-image
+pillow>=4.3.0,!=7.1.0,!=7.1.1
+imageio>=2.3.0
+tifffile>=2019.7.26
+PyWavelets>=1.1.1
+imread>=0.5.1,!=0.7.2
