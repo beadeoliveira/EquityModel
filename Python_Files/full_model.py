@@ -16,15 +16,13 @@ from sklearn.model_selection import cross_val_score
 # independent variables. The regression is completed using SKLearn which
 # utilizes test and training data to fit a learned model to the data.
 
-def calculate_model(data):
+def calculate_model(data, predictor_list):
     # Sets the index of the graph as the date so that the regression occurs
     # over the dates
-    data.set_index(pd.DatetimeIndex(data['date']), inplace=True)
+    df.set_index(pd.DatetimeIndex(df['date']), inplace=True)
 
     # Sets the  predictor values
-    predictors = ['market_cap', 'sector', 'index_membership', 'factor_1',
-                  'factor_2', 'factor_3', 'factor_4', 'factor_5', 'factor_6',
-                  'factor_7', 'factor_8', 'factor_9', 'factor_10']
+    predictors = predictor_list
 
     # Uses the train_test_split to randomly select 30% of the data as testing
     # data and saving the rest for the creation/training of the model
@@ -52,9 +50,7 @@ def calculate_model(data):
     # k_fold test
     # predictor (x) and response variables (y)
     y = data['target']
-    X = data[['market_cap', 'sector', 'index_membership', 'factor_1',
-            'factor_2', 'factor_3', 'factor_4', 'factor_5', 'factor_6',
-            'factor_7', 'factor_8', 'factor_9', 'factor_10']]
+    X = data[predictor_list]
 
     # Conducts the K_Fold test
     cv = KFold(n_splits=10, random_state=1, shuffle=True)
@@ -74,7 +70,6 @@ def calculate_model(data):
 
 
 if __name__ == '__main__':
-
     # Path to the given CSV containing the data
     # TODO: insert the path to the dataset that you would like to analyze
     # In this instance, I have used the path to the file on my computer as an
@@ -84,6 +79,14 @@ if __name__ == '__main__':
     # Reads the information contained in the CSV
     df = pd.read_csv(path_to_file)
 
-    calculate_model(df)
+    df = pd.get_dummies(df,prefix='Identifier ', prefix_sep='=', columns=[
+        'identifier'])
+
+    cols = list(df.columns)
+
+    cols.remove('target')
+    cols.remove('date')
+
+    calculate_model(df, cols)
 
     print('\n Model Complete')
