@@ -1,4 +1,4 @@
-# EquityModel
+# Equity Model
 
 Thank you for taking the time to examine my Equity Model!
 
