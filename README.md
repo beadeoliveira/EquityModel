@@ -1,6 +1,6 @@
-# Equity Model
+# Equity Selection Model
 
-Thank you for taking the time to examine my Equity Model!
+Thank you for taking the time to examine my Equity Selection Model!
 
 Please follow the instructions below to run the code:
 
